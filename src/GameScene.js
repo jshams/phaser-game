@@ -13,16 +13,19 @@ class GameScene extends Scene {
   }
 
   create() {
-    const logo = this.add.image(400, 150, 'logo');
+    const sky = this.add.image(0, 0, 'sky')
+    sky.setOrigin(0, 0)
 
-    this.tweens.add({
-        targets: logo,
-        y: 450,
-        duration: 2000,
-        ease: 'Power2',
-        yoyo: true,
-        loop: -1
-    });
+    this.createPlatforms()
+  }
+
+  createPlatforms() {
+    this.add.image(400, 300, 'sky')
+    this.platforms = this.physics.add.staticGroup()
+    this.platforms.create(400, 568, 'ground').setScale(2).refreshBody()
+    this.platforms.create(600, 400, 'ground')
+    this.platforms.create(50, 250, 'ground')
+    this.platforms.create(750, 220, 'ground')
   }
 }
 
