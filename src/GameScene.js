@@ -2,6 +2,12 @@ import { Scene } from 'phaser'
 
 class GameScene extends Scene {
 
+  constructor() {
+    super()
+
+    this.score = 0;
+  }
+
   ///////////////////
   ///// PRELOAD /////
   ///////////////////
@@ -29,6 +35,7 @@ class GameScene extends Scene {
     this.createPlayer()
     this.createCursor()
     this.createStars()
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
   }
 
   createPlatforms() {
@@ -87,6 +94,8 @@ class GameScene extends Scene {
 
   collectStar (player, star) {
       star.disableBody(true, true);
+      this.score += 10
+      this.scoreText.setText('Score: '+ this.score)
   }
 
   ///////////////////
