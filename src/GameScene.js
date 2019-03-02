@@ -3,7 +3,7 @@ import { Scene } from 'phaser'
 class GameScene extends Scene {
 
   constructor() {
-    super()
+    super('game')
 
     this.score = 0
     this.gameOver = false
@@ -55,6 +55,7 @@ class GameScene extends Scene {
 
   createPlayer() {
     this.player = this.physics.add.sprite(100, 450, 'dude');
+    this.player.setCircle(15, 1, 17)
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.physics.add.collider(this.player, this.platforms);
@@ -92,9 +93,13 @@ class GameScene extends Scene {
 
       this.stars.children.iterate((child) => {
           child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+          child.setCircle(12)
       });
 
+
+      // this.stars.setCollideWorldBounds(true);
       this.physics.add.collider(this.stars, this.platforms)
+      // this.physics.add.collider(this.stars, this.bounds)
       this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
   }
 
@@ -109,6 +114,7 @@ class GameScene extends Scene {
           });
           const x = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
           const bomb = this.bombs.create(x, 16, 'bomb');
+          bomb.setCircle(7)
           bomb.setBounce(1);
           bomb.setCollideWorldBounds(true);
           bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
