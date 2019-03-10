@@ -1,4 +1,4 @@
-import { Scene } from 'phaser'
+import Phaser, { Scene } from 'phaser'
 
 class GameScene extends Scene {
 
@@ -106,7 +106,7 @@ class GameScene extends Scene {
   collectStar (player, star) {
       star.disableBody(true, true);
       this.score += 10
-      this.scoreText.setText('Score: '+ this.score)
+      this.scoreText.setText(`Score: ${this.score}`)
 
       if (this.stars.countActive(true) === 0) {
           this.stars.children.iterate((child) => {

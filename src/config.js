@@ -12,9 +12,9 @@ const config = {
       default: 'arcade',
       arcade: {
         gravity: {y:300},
-        debug: true
+        debug: false
       }
     }
 };
 
-export { config }
+export default config
